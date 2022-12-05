@@ -1,6 +1,6 @@
 package com.codegym;
 
-public class Integer20 {
+public class inTeger20 {
     public static void main(String[] args) {
         int number = 2;
         int count = 0;
