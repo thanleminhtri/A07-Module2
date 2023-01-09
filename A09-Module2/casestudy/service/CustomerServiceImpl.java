@@ -3,6 +3,7 @@ package com.codegym.casestudy.service;
 import com.codegym.casestudy.Iservice.IService;
 import com.codegym.casestudy.model.Customer;
 import com.codegym.casestudy.model.Employee;
+import com.codegym.casestudy.ulity.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +44,17 @@ public class CustomerServiceImpl implements IService {
 
     @Override
     public void add() {
+        customerArrayList = ReadAndWrite.readCustomer();
         Customer customertemp=inputCustomer();
         customerArrayList.add(customertemp);
         System.out.println("da add");
+        ReadAndWrite.writeCustomer(customerArrayList);
+
     }
 
     @Override
     public void display() {
+        customerArrayList = ReadAndWrite.readCustomer();
         if (customerArrayList.isEmpty()) {
             System.out.println("list empty");
         }else {
@@ -61,6 +66,7 @@ public class CustomerServiceImpl implements IService {
 
     @Override
     public  void edit() {
+        customerArrayList = ReadAndWrite.readCustomer();
         boolean check = false;
         for ( int i =0; i < customerArrayList.size(); i++){
             if (inputCustomer().getCustomerID() == customerArrayList.get(i).getCustomerID()){

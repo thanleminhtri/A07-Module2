@@ -49,6 +49,6 @@ public class Customer extends Person{
 
     @Override
     public String getInfo() {
-        return null;
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s," ,getName(),getBirthday(),getGender(),getPersonID(),getPhonenumber(),getEmail(),getCustomerID(),getCustomerType(),getCustomerAddress());
     }
 }

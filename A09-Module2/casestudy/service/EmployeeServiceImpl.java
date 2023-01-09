@@ -2,7 +2,8 @@ package com.codegym.casestudy.service;
 
 import com.codegym.casestudy.Iservice.IService;
 import com.codegym.casestudy.model.Employee;
-import com.codegym.ss10.Arraylist;
+import com.codegym.casestudy.ulity.ReadAndWrite;
+import com.codegym.ss18.ReadandWrite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Scanner;
 public class EmployeeServiceImpl implements IService {
     private static final Scanner sc =new Scanner(System.in);
     private static List<Employee> employeeArraylist =new ArrayList<>();
+    private static final String fileEmployee ="C:\\Users\\ADMIN\\baitap\\src\\com\\codegym\\casestudy\\data\\employee.csv";
+
 //    Employee(String name, String birthday, String gender, int personID, String phonenumber, String email, int employeeId, String level, String postion, double salary
     static  {
     employeeArraylist.add(new Employee("a","23/12","male",1990,"123","12",1,"abc","abc",5005));
@@ -43,13 +46,16 @@ public class EmployeeServiceImpl implements IService {
     }
     @Override
     public void add() {
-        Employee employeetemp=inputEmployee();
-        employeeArraylist.add(employeetemp);
+        employeeArraylist = ReadAndWrite.readEmployee();
+        Employee temp = inputEmployee();
+        employeeArraylist.add(temp);
         System.out.println("da add");
+        ReadAndWrite.writeEmployee(employeeArraylist);
     }
 
     @Override
     public void display() {
+        employeeArraylist = ReadAndWrite.readEmployee();
         if (employeeArraylist.isEmpty()) {
             System.out.println("list empty");
         }else {
@@ -61,6 +67,7 @@ public class EmployeeServiceImpl implements IService {
 
     @Override
     public void edit() {
+        employeeArraylist = ReadAndWrite.readEmployee();
         boolean check = false;
         for ( int i =0; i < employeeArraylist.size(); i++){
             if (inputEmployee().getEmployeeId() == employeeArraylist.get(i).getEmployeeId()){
